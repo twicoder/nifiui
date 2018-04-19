@@ -1,11 +1,105 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>NiFi</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" href="/static/images/nifi16.ico"/>
+    <link rel="stylesheet" href="/static/css/reset.css" type="text/css"/>
+    ${nf.canvas.style.tags}
+    <link rel="stylesheet" href="/static/js/codemirror/lib/codemirror.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/js/codemirror/addon/hint/show-hint.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/js/jquery/nfeditor/jquery.nfeditor.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/js/jquery/nfeditor/languages/nfel.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/js/jquery/tabbs/jquery.tabbs.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/js/jquery/combo/jquery.combo.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/js/jquery/modal/jquery.modal.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/js/jquery/qtip2/jquery.qtip.min.css?" type="text/css"/>
+    <link rel="stylesheet" href="/static/js/jquery/ui-smoothness/jquery-ui-1.10.4.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/js/jquery/minicolors/jquery.minicolors.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/js/jquery/slickgrid/css/slick.grid.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/js/jquery/slickgrid/css/slick-default-theme.css" type="text/css"/>
+    <script type="text/javascript" src="/static/js/codemirror/lib/codemirror-compressed.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/ui-smoothness/jquery-ui-1.10.4.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/jquery.center.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/jquery.count.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/jquery.ellipsis.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/jquery.each.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/jquery.tab.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/tabbs/jquery.tabbs.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/combo/jquery.combo.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/modal/jquery.modal.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/minicolors/jquery.minicolors.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/qtip2/jquery.qtip.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/jquery.event.drag-2.2.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/slickgrid/plugins/slick.cellrangeselector.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/slickgrid/plugins/slick.cellselectionmodel.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/slickgrid/plugins/slick.rowselectionmodel.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/slickgrid/plugins/slick.autotooltips.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/slickgrid/slick.formatters.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/slickgrid/slick.editors.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/slickgrid/slick.dataview.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/slickgrid/slick.core.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/slickgrid/slick.grid.js"></script>
+    <script type="text/javascript" src="/static/js/json2.js"></script>
+    <script type="text/javascript" src="/static/js/nf/nf-namespace.js"></script>
+    ${nf.canvas.script.tags}
+    <script type="text/javascript" src="/static/js/jquery/nfeditor/languages/nfel.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/nfeditor/jquery.nfeditor.js"></script>
 </head>
-<body>
-<h1>Canvas!!!</h1>
-<div th:include="partials/footer :: copy"></div>
+<body id="canvas-body">
+<!--<div id="splash">-->
+<!--<img id="splash-img" src="/static/images/loadAnimation.gif" alt="Loading..."/>-->
+<!--</div>-->
+
+
+<div th:include="partials/message-pane :: #message-pane"></div>
+<div th:include="partials/canvas/registration :: #registration-pane"></div>
+<div th:include="partials/banners-main :: #banner-main"></div>
+<div th:include="partials/canvas/canvas-header :: #canvas-header-page"></div>
+<div th:include="partials/canvas/about-dialog :: #nf-about"></div>
+<div th:include="partials/ok-dialog :: #nf-ok-dialog"></div>
+<div th:include="partials/yes-no-dialog :: #nf-yes-no-dialog"></div>
+<div th:include="partials/status-history-dialog :: #status-history-dialog"></div>
+<div th:include="partials/canvas/new-processor-dialog :: #new-processor-dialog"></div>
+<div th:include="partials/canvas/new-port-dialog :: #new-port-dialog"></div>
+<div th:include="partials/canvas/new-process-group-dialog :: #new-process-group-dialog"></div>
+<div th:include="partials/canvas/new-remote-process-group-dialog :: #new-remote-process-group-dialog"></div>
+<div th:include="partials/canvas/new-template-dialog :: #new-template-dialog"></div>
+<div th:include="partials/canvas/instantiate-template-dialog :: #instantiate-template-dialog"></div>
+<div th:include="partials/canvas/new-processor-property-dialog :: #processor-property-dialog"></div>
+<div th:include="partials/canvas/fill-color-dialog :: #fill-color-dialog"></div>
+<div th:include="partials/canvas/connections-dialog :: #connections-dialog"></div>
+<div th:include="partials/canvas/flow-status :: #flow-status"></div>
+
+<div id="canvas-container" class="unselectable"></div>
+<div id="canvas-tooltips">
+    <div id="processor-tooltips"></div>
+    <div id="port-tooltips"></div>
+    <div id="process-group-tooltips"></div>
+    <div id="remote-process-group-tooltips"></div>
+</div>
+
+<div th:include="partials/canvas/navigation :: #canvas-navigation-page"></div>
+<div th:include="partials/canvas/settings-content :: #settings"></div>
+<div th:include="partials/canvas/shell :: #shell-dialog"></div>
+<div th:include="partials/canvas/processor-configuration :: #processor-configuration"></div>
+<div th:include="partials/processor-details :: #processor-details"></div>
+<div th:include="partials/canvas/process-group-configuration :: #process-group-configuration"></div>
+<div th:include="partials/canvas/process-group-details :: #process-group-details"></div>
+<div th:include="partials/canvas/remote-process-group-configuration :: #remote-process-group-configuration"></div>
+<div th:include="partials/canvas/remote-process-group-details :: #remote-process-group-details"></div>
+<div th:include="partials/canvas/remote-process-group-ports :: #remote-process-group-ports"></div>
+<div th:include="partials/canvas/remote-port-configuration :: #remote-port-configuration"></div>
+<div th:include="partials/canvas/port-configuration :: #port-configuration"></div>
+<div th:include="partials/canvas/port-details :: #port-details"></div>
+<div th:include="partials/canvas/secure-port-configuration :: #secure-port-configuration-page"></div>
+<div th:include="partials/canvas/secure-port-details :: #secure-port-details"></div>
+<div th:include="partials/canvas/label-configuration :: #label-configuration"></div>
+<div th:include="partials/canvas/connection-configuration :: #connection-configuration"></div>
+<div th:include="partials/connection-details :: #connection-details"></div>
+<div id="faded-background"></div>
+<div id="glass-pane"></div>
+<div id="context-menu" class="unselectable"></div>
 </body>
 </html>

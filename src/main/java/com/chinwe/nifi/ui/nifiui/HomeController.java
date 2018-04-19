@@ -12,4 +12,10 @@ public class HomeController {
         model.addAttribute("name", "Chinwe Ren");
         return "index";
     }
+
+    @GetMapping("/canvas")
+    public String canvas(){
+        return "pages/canvas";
+    }
+
 }

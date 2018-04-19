@@ -50,7 +50,7 @@ nf.nfel = (function() {
     
     $.ajax({
         type: 'GET',
-        url: '../static/nifi-docs/html/expression-language-guide.html',
+        url: '../nifi-docs/html/expression-language-guide.html',
         dataType: 'html'
     }).done(function(response) {
         $(response).find('div.function').each(function() {
